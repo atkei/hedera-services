@@ -793,7 +793,7 @@ workflows:
   GCP-Daily-Services-Crypto-Update-Migration-7N-2C:
     triggers:
       - schedule:
-          cron: "11 22 * * *"
+          cron: "46 22 * * *"
           filters:
             branches:
               only:
@@ -1398,6 +1398,12 @@ jobs:
             cd /upgradeRepo/hedera-services; export JAVA_HOME="/usr/local/java/jdk-12.0.2";
             mvn versions:set -DnewVersion=0.21.1; mvn versions:commit;
             mvn --no-transfer-progress clean install -DskipTests;
+      - persist_to_workspace:
+          root: /
+          paths:
+            - repo/
+            - swirlds-platform/
+            - upgradeRepo/
 
   build-platform-and-services:
     parameters:
