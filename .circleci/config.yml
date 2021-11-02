@@ -1382,28 +1382,23 @@ jobs:
             cd /repo; export JAVA_HOME="/usr/local/java/jdk-12.0.2"; mvn javadoc:javadoc
 
   increment-jar-version:
-    parameters:
-      workflow-name:
-        type: string
-        default: ""
-      executor:
-        name: build-executor
-      steps:
-        - attach_workspace:
-            at: /
-        - run:
-            name: Clone a new hedera-services repo for new version jars
-            command: |
-              sed -i -e 's/Host services-jrs-regression/Host services-jrs-regression\n HostName github.com/g' ~/.ssh/config
-              cd /; mkdir upgradeRepo; cd upgradeRepo; GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" \
-              git clone git@github.com:hashgraph/hedera-services.git;
-
-        - run:
-            name: Increment version number
-            command: |
-              cd /upgradeRepo/hedera-services; export JAVA_HOME="/usr/local/java/jdk-12.0.2";
-              mvn versions:set -DnewVersion=0.21.0; mvn versions:commit;
-              mvn --no-transfer-progress clean install -DskipTests ;
+    executor:
+      name: build-executor
+    steps:
+      - attach_workspace:
+          at: /
+      - run:
+          name: Clone a new hedera-services repo for new version jars
+          command: |
+            sed -i -e 's/Host services-jrs-regression/Host services-jrs-regression\n HostName github.com/g' ~/.ssh/config
+            cd /; mkdir upgradeRepo; cd upgradeRepo; GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" \
+            git clone git@github.com:hashgraph/hedera-services.git;
+      - run:
+          name: Increment version number
+          command: |
+            cd /upgradeRepo/hedera-services; export JAVA_HOME="/usr/local/java/jdk-12.0.2";
+            mvn versions:set -DnewVersion=0.21.1; mvn versions:commit;
+            mvn --no-transfer-progress clean install -DskipTests;
 
   build-platform-and-services:
     parameters:
