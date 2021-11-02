@@ -605,7 +605,7 @@ commands:
               ${JRS_OPTIONS} \
               -Dlog4j.configurationFile=log4j2-jrs.xml \
               -Dspring.output.ansi.enabled=ALWAYS \
-              -jar regression.jar "${CONFIG_PATH}" -r "<< parameters.hedera_services_path >>" -w DOCKER_REMOTE -ci "${UPGRADE_REPO_PATH}" -ur "${CI_PARAMETERS}"
+              -jar regression.jar "${CONFIG_PATH}" -r "<< parameters.hedera_services_path >>" -w DOCKER_REMOTE -ci "${CI_PARAMETERS}" -ur "${UPGRADE_REPO_PATH}"
             popd > /dev/null 2>&1
           no_output_timeout: 30m
 
@@ -793,7 +793,7 @@ workflows:
   GCP-Daily-Services-Crypto-Update-Migration-7N-2C:
     triggers:
       - schedule:
-          cron: "56 21 * * *"
+          cron: "11 22 * * *"
           filters:
             branches:
               only:
