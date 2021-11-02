@@ -793,7 +793,7 @@ workflows:
   GCP-Daily-Services-Crypto-Update-Migration-7N-2C:
     triggers:
       - schedule:
-          cron: "46 22 * * *"
+          cron: "47 22 * * *"
           filters:
             branches:
               only:
