@@ -1390,7 +1390,6 @@ jobs:
       - run:
           name: Clone a new hedera-services repo for new version jars
           command: |
-#            sed -i -e 's/Host services-jrs-regression/Host services-jrs-regression\n HostName github.com/g' ~/.ssh/config
             cd /; mkdir upgradeRepo; cd upgradeRepo; GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" \
             git clone git@github.com:hashgraph/hedera-services.git;
       - run:
