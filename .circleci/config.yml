@@ -790,14 +790,14 @@ workflows:
             - attach_workspace:
                 at: /
 
-  GCP-Daily-Services-Update-Migration-4N-1C:
+  GCP-Daily-Services-Crypto-Update-Migration-7N-2C:
     triggers:
       - schedule:
           cron: "15 7 * * *"
           filters:
             branches:
               only:
-                - master
+                - 02170-01737-M-upgradeMigration
     jobs:
       - build-platform-and-services
       - increment-jar-version:
@@ -806,9 +806,9 @@ workflows:
       - jrs-regression:
           context: Slack
           regression_path: /swirlds-platform/regression
-          result_path: results/4N_1C/UpdateMigration
+          result_path: results/7N_2C/UpdateMigration
           config_type: "daily"
-          workflow-name: "GCP-Daily-Services-Comp-Update-Migration-4N-1C"
+          workflow-name: "GCP-Daily-Services-Crypto-Update-Migration-7N-2C"
           upgrade_migration: true
           requires:
             - increment-jar-version
@@ -1429,7 +1429,8 @@ jobs:
             cd /swirlds-platform;
             sed -i -e 's/github.com/services-jrs-regression/g' .gitmodules;
             git submodule update --init --recursive --checkout;
-            cd regression/; git checkout  01632-D-update-reconnect-runner-3; git pull; git log -n 2; cd -
+            cd regression; git checkout 01632-01737-D-upgradeMigration;
+            cd ..;
             mvn --no-transfer-progress clean install -DskipTests;
 
       - run:
