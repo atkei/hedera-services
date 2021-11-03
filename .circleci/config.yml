@@ -580,7 +580,7 @@ commands:
 
             UPGRADE_REPO_PATH=""
             if [[ "<< parameters.upgrade_migration >>" == "true" ]]; then
-              UPGRADE_REPO_PATH="${UPGRADE_REPO_PATH}-ur /upgradeRepo/hedera-services/"
+              UPGRADE_REPO_PATH="${UPGRADE_REPO_PATH}/upgradeRepo/hedera-services/"
             fi
 
             pushd "${REGRESSION_PATH}" > /dev/null 2>&1
@@ -605,7 +605,7 @@ commands:
               ${JRS_OPTIONS} \
               -Dlog4j.configurationFile=log4j2-jrs.xml \
               -Dspring.output.ansi.enabled=ALWAYS \
-              -jar regression.jar "${CONFIG_PATH}" -r "<< parameters.hedera_services_path >>" -w DOCKER_REMOTE -ci "${CI_PARAMETERS}" "${UPGRADE_REPO_PATH}"
+              -jar regression.jar "${CONFIG_PATH}" -r "<< parameters.hedera_services_path >>" -w DOCKER_REMOTE -ci "${CI_PARAMETERS}" -ur "${UPGRADE_REPO_PATH}"
             popd > /dev/null 2>&1
           no_output_timeout: 30m
 
@@ -793,7 +793,7 @@ workflows:
   GCP-Daily-Services-Crypto-Update-Migration-7N-2C:
     triggers:
       - schedule:
-          cron: "29 4 * * *"
+          cron: "47 4 * * *"
           filters:
             branches:
               only:
