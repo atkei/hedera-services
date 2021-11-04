@@ -21,6 +21,7 @@ package com.hedera.services.state.logic;
  */
 
 import com.hedera.services.txns.network.UpgradeActions;
+import com.swirlds.common.notification.listeners.StateWriteToDiskCompleteListener;
 import com.swirlds.common.notification.listeners.StateWriteToDiskCompleteNotification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,13 +30,13 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class StateWriteToDiskCompleteListener implements com.swirlds.common.notification.listeners.StateWriteToDiskCompleteListener {
-	private static final Logger log = LogManager.getLogger(StateWriteToDiskCompleteListener.class);
+public class StateWriteToDiskListener implements StateWriteToDiskCompleteListener {
+	private static final Logger log = LogManager.getLogger(StateWriteToDiskListener.class);
 
 	private final UpgradeActions upgradeActions;
 
 	@Inject
-	public StateWriteToDiskCompleteListener(final UpgradeActions upgradeActions) {
+	public StateWriteToDiskListener(final UpgradeActions upgradeActions) {
 		this.upgradeActions = upgradeActions;
 	}
 
