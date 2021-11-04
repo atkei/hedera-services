@@ -46,6 +46,7 @@ import com.hedera.services.state.initialization.SystemAccountsCreator;
 import com.hedera.services.state.initialization.SystemFilesManager;
 import com.hedera.services.state.logic.HandleLogicModule;
 import com.hedera.services.state.logic.ReconnectListener;
+import com.hedera.services.state.logic.StateWriteToDiskCompleteListener;
 import com.hedera.services.state.merkle.MerkleAccount;
 import com.hedera.services.state.merkle.MerkleNetworkContext;
 import com.hedera.services.state.merkle.MerkleOptionalBlob;
@@ -104,6 +105,10 @@ public abstract class StateModule {
 	@Binds
 	@Singleton
 	public abstract ReconnectCompleteListener bindReconnectListener(ReconnectListener reconnectListener);
+
+	@Binds
+	@Singleton
+	public abstract StateWriteToDiskCompleteListener bindStateWrittenToDiskListener(StateWriteToDiskCompleteListener stateWriteToDiskListener);
 
 	@Binds
 	@Singleton
