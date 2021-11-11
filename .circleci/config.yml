@@ -888,13 +888,13 @@ workflows:
                 at: /
 
   GCP-Daily-Services-Update-4N-2C:
-    triggers:
-      - schedule:
-          cron: "30 22 * * *"
-          filters:
-            branches:
-              only:
-                - master
+#    triggers:
+#      - schedule:
+#          cron: "30 22 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
     jobs:
       - build-platform-and-services
       - jrs-regression:
@@ -1243,7 +1243,7 @@ workflows:
             filters:
               branches:
                 ignore:
-                  - NONE
+                  - 02459-M-update-feature-regression-review
             workflow-name: "Continuous-integration"
         - sonar-check:
             context: SonarCloud
