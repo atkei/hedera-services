@@ -911,13 +911,13 @@ workflows:
                 at: /
 
   GCP-Daily-Services-Comp-Update-DisPreUpdate-4N-2C:
-#    triggers:
-#      - schedule:
-#          cron: "45 22 * * *"
-#          filters:
-#            branches:
-#              only:
-#                - master
+    triggers:
+      - schedule:
+          cron: "45 22 * * *"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - build-platform-and-services
       - jrs-regression:
@@ -934,13 +934,13 @@ workflows:
                 at: /
 
   GCP-Daily-Services-Update-Reconnect-4N-2C:
-    triggers:
-      - schedule:
-          cron: "15 22 * * *"
-          filters:
-            branches:
-              only:
-                - master
+#    triggers:
+#      - schedule:
+#          cron: "15 22 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
     jobs:
       - build-platform-and-services
       - jrs-regression:
